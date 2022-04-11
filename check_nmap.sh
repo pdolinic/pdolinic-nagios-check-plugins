@@ -20,17 +20,18 @@ fi
 
 host="$1"
 port="$2"
-ce="$3"
-oe="$4"
-fe="$5"
+
+cec="$3"
+oec="$4"
+fec="$5"
 
 clsd="closed"
 opn="open"
 fltrd="filtered"
 
-openedcheck=$(/usr/bin/sudo /usr/bin/nmap -p $port $host | grep "open"| awk '{ print $2 }' ) 
-filteredcheck=$(/usr/bin/sudo /usr/bin/nmap  -p $port $host | grep "filtered"| awk '{ print $2 }' ) 
-closedcheck=$(/usr/bin/sudo /usr/bin/nmap -p $port $host | grep "closed"| awk '{ print $2 }' )
+openedcheck=$(/usr/bin/nmap -p $port $host | grep "open"| awk '{ print $2 }' ) 
+filteredcheck=$(/usr/bin/nmap  -p $port $host | grep "filtered"| awk '{ print $2 }' ) 
+closedcheck=$(/usr/bin/nmap -p $port $host | grep "closed"| awk '{ print $2 }' )
 
 o_res=$(/usr/bin/sudo /usr/bin/nmap -p $port $host | grep "open" | awk '{ print $1,$2 }' )
 f_res=$(/usr/bin/sudo /usr/bin/nmap -p $port $host | grep "filtered" | awk '{ print $1,$2 }' ) 
@@ -40,17 +41,17 @@ c_res=$(/usr/bin/sudo /usr/bin/nmap -p $port $host | grep "closed" | awk '{ prin
 if [ "$closedcheck" == $clsd ]
 then
     echo $c_res
-    exit $ce
+    exit $cec
 fi
 
 if [ "$openedcheck" == $opn ]
 then
     echo $o_res
-    exit $oe
+    exit $oec
 fi
 
 if [ "$filteredcheck" == $fltrd ]
 then
     echo $f_res   
-    exit $fe
+    exit $fec
 fi
