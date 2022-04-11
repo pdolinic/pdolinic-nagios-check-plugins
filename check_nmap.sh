@@ -33,9 +33,9 @@ openedcheck=$(/usr/bin/nmap -p $port $host | grep "open"| awk '{ print $2 }' )
 filteredcheck=$(/usr/bin/nmap  -p $port $host | grep "filtered"| awk '{ print $2 }' ) 
 closedcheck=$(/usr/bin/nmap -p $port $host | grep "closed"| awk '{ print $2 }' )
 
-o_res=$(/usr/bin/sudo /usr/bin/nmap -p $port $host | grep "open" | awk '{ print $1,$2 }' )
-f_res=$(/usr/bin/sudo /usr/bin/nmap -p $port $host | grep "filtered" | awk '{ print $1,$2 }' ) 
-c_res=$(/usr/bin/sudo /usr/bin/nmap -p $port $host | grep "closed" | awk '{ print $1,$2 }' )
+o_res=$(/usr/bin/nmap -p $port $host | grep "open" | awk '{ print $1,$2 }' )
+f_res=$(/usr/bin/nmap -p $port $host | grep "filtered" | awk '{ print $1,$2 }' ) 
+c_res=$(/usr/bin/nmap -p $port $host | grep "closed" | awk '{ print $1,$2 }' )
 
 
 if [ "$closedcheck" == $clsd ]
