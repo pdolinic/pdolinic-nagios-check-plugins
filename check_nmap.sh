@@ -18,6 +18,9 @@ then
     echo "./check_nmap.sh example.com 22 1 0 2"
 fi
 
+now=$(date +"%Y-%m-%d-%h-%s")
+filename="/tmp/nmap-save-${now}"
+
 host="$1"
 port="$2"
 
@@ -29,29 +32,33 @@ clsd="closed"
 opn="open"
 fltrd="filtered"
 
-openedcheck=$(/usr/bin/nmap -p $port $host | grep "open"| awk '{ print $2 }' ) 
-filteredcheck=$(/usr/bin/nmap  -p $port $host | grep "filtered"| awk '{ print $2 }' ) 
-closedcheck=$(/usr/bin/nmap -p $port $host | grep "closed"| awk '{ print $2 }' )
+nmap_save=$(/usr/bin/nmap -p $port $host -oN $filename)
+OpenedCheck=$(grep "open" $filename | awk '{ print $2 }' ) 
+FilteredCheck=$(grep "filtered" $filename | awk '{ print $2 }' ) 
+ClosedCheck=$(grep "closed" $filename | awk '{ print $2 }' )
 
-o_res=$(/usr/bin/nmap -p $port $host | grep "open" | awk '{ print $1,$2 }' )
-f_res=$(/usr/bin/nmap -p $port $host | grep "filtered" | awk '{ print $1,$2 }' ) 
-c_res=$(/usr/bin/nmap -p $port $host | grep "closed" | awk '{ print $1,$2 }' )
+Opened_Result=$(grep "open" $filename | awk '{ print $1,$2 }' )
+Filtered_Result=$(grep "filtered" $filename | awk '{ print $1,$2 }' ) 
+Closed_Result=$(grep "closed" $filename | awk '{ print $1,$2 }' )
 
 
-if [ "$closedcheck" == $clsd ]
+if [ "$ClosedCheck" == $clsd ]
 then
-    echo $c_res
+    echo $Closed_Result
+    rm  "$filename"
     exit $cec
 fi
 
-if [ "$openedcheck" == $opn ]
+if [ "$OpenedCheck" == $opn ]
 then
-    echo $o_res
+    echo $Opened_Result
+    rm "$filename"
     exit $oec
 fi
 
-if [ "$filteredcheck" == $fltrd ]
+if [ "$FilteredCheck" == $fltrd ]
 then
-    echo $f_res   
-    exit $fec
+    echo $Filtered_Result   
+    rm "$filename"
+    exit $fec   
 fi
