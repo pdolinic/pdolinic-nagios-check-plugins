@@ -32,7 +32,7 @@ clsd="closed"
 opn="open"
 fltrd="filtered"
 
-nmap_save=$(/usr/bin/nmap -p $port $host -oN $filename)
+Nmap_Save=$(/usr/bin/nmap -p $port $host -oN $filename)
 OpenedCheck=$(grep "open" $filename | awk '{ print $2 }' ) 
 FilteredCheck=$(grep "filtered" $filename | awk '{ print $2 }' ) 
 ClosedCheck=$(grep "closed" $filename | awk '{ print $2 }' )
