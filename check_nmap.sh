@@ -32,7 +32,7 @@ then
     echo $Exit_Codes
 fi
 
-#Generate Temporaty Nmap-Savefile
+#Generate Temporary Nmap-Savefile
 RandomID=$(cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20; echo;)
 now=$(date +"%Y-%m-%d-%h-%s")
 filename="/tmp/nmap-save-${RandomID}"
