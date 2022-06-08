@@ -1,9 +1,9 @@
 #!/bin/bash
 
-## Description: Small Check for Educational Purposes 
-## Author: pdolinic@netways.de, Junior Consultant at NETWAYS Professional Services GmbH. Deutschherrnstr. 15-19 90429 Nuremberg. 
+##Description: Small Check for Educational Purposes 
+##Author: pdolinic@netways.de, Junior Consultant at NETWAYS Professional Services GmbH. Deutschherrnstr. 15-19 90429 Nuremberg. 
 
-# Check Single Ports
+#Check Single Ports
 
 #License = GNU GPLv2
 
