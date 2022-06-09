@@ -53,7 +53,7 @@ fltrd="filtered"
 #Run Scan
 Nmap_Save=$(/usr/bin/nmap -p $port $host -oN $filename)
 
-#Check States
+#States
 OpenedCheck=$(grep "open" $filename | awk '{ print $2 }' ) 
 FilteredCheck=$(grep "filtered" $filename | awk '{ print $2 }' ) 
 ClosedCheck=$(grep "closed" $filename | awk '{ print $2 }' )
@@ -63,7 +63,7 @@ Opened_Result=$(grep "open" $filename | awk '{ print $1,$2 }' )
 Filtered_Result=$(grep "filtered" $filename | awk '{ print $1,$2 }' ) 
 Closed_Result=$(grep "closed" $filename | awk '{ print $1,$2 }' )
 
-
+#Check Matches
 if [ "$ClosedCheck" == $clsd ]
 then
     echo $Closed_Result
