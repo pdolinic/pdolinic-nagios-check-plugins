@@ -27,7 +27,7 @@ Exit_Codes=" >> 0:OK, 1:Warn, 2:Critical, 3:Unkown << "
 
 if [ -z "$1" ] || [ -z "$2" ] 
 then
-    echo ">> Usage: arg0=programname arg1=hostname arg2=port arg3=Port-Closed_Exit_Code#1 arg4=Port-Opened_Exit_Code#2 arg5=Port-Filtered_Exit_Code#3 << " && \
+    echo ">> Usage: arg0=programname arg1=hostname arg2=port arg3=Port-Closed_Exit_Code arg4=Port-Opened_Exit_Code arg5=Port-Filtered_Exit_Code << " && \
     echo ">> Example: ./check_nmap.sh example.com 445 1 2 0 <<" && \
     echo $Exit_Codes
 fi
